@@ -1,15 +1,15 @@
-import {useForm} from "react-hook-form";
-import {zodResolver} from "@hookform/resolvers/zod";
-import {mailSchema} from "../../utils/mailSchema";
-import {TextField, Button, Typography, Box} from "@mui/material";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { mailSchema } from "../../utils/mailSchema";
+import { TextField, Button, Typography, Box } from "@mui/material";
 import axios from "axios";
 import {
   errorNotifications,
   successNotifications,
 } from "../../notifications/notifications";
 
-export default function MailForm({...props}) {
-  const {titulo, setOpen} = props;
+export default function MailForm({ ...props }) {
+  const { titulo, setOpen } = props;
   const form = useForm({
     resolver: zodResolver(mailSchema),
   });
@@ -17,12 +17,12 @@ export default function MailForm({...props}) {
   const {
     register,
     handleSubmit,
-    formState: {errors},
+    formState: { errors },
     reset,
   } = form;
 
   const onSubmit = async (loginFormData) => {
-    const {name, email, phone, mensaje} = loginFormData;
+    const { name, email, phone, mensaje } = loginFormData;
 
     const requestData = {
       nombre: name,
@@ -33,10 +33,7 @@ export default function MailForm({...props}) {
     };
 
     try {
-      const {data} = await axios.post(
-        "http://localhost:3000/api/send",
-        requestData
-      );
+      const { data } = await axios.post("3.129.111.220/api/send", requestData);
       reset();
       successNotifications(data.message);
       setOpen(false);
