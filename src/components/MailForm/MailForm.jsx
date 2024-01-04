@@ -22,6 +22,8 @@ export default function MailForm({ ...props }) {
   } = form;
 
   const onSubmit = async (loginFormData) => {
+    const apiKey =
+      "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";
     const { name, email, phone, mensaje } = loginFormData;
 
     const requestData = {
@@ -33,7 +35,16 @@ export default function MailForm({ ...props }) {
     };
 
     try {
-      const { data } = await axios.post("3.129.111.220/api/send", requestData);
+      const { data } = await axios.post(
+        "https://testapi-49cb.onrender.com/api/send",
+        requestData,
+        {
+          headers: {
+            Authorization: `Bearer ${apiKey}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
       reset();
       successNotifications(data.message);
       setOpen(false);
