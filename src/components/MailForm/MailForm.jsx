@@ -22,8 +22,7 @@ export default function MailForm({ ...props }) {
   } = form;
 
   const onSubmit = async (loginFormData) => {
-    const apiKey =
-      "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";
+    const apiKey = process.env.SENDGRID_API_KEY;
     const { name, email, phone, mensaje } = loginFormData;
 
     const requestData = {
