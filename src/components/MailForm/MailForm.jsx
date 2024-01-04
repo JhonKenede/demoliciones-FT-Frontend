@@ -22,7 +22,7 @@ export default function MailForm({ ...props }) {
   } = form;
 
   const onSubmit = async (loginFormData) => {
-    const apiKey = process.env.SENDGRID_API_KEY;
+    const apiKey = process.env.REACT_APP_SENDGRID_API_KEY;
     if (!apiKey) {
       console.error("SENDGRID_API_KEY not set");
       return;
