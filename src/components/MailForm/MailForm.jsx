@@ -7,7 +7,9 @@ import {
   errorNotifications,
   successNotifications,
 } from "../../notifications/notifications";
+
 const apiKey = import.meta.env.VITE_REACT_APP_SENDGRID_API_KEY;
+
 export default function MailForm({ ...props }) {
   const { titulo, setOpen } = props;
   const form = useForm({
@@ -22,10 +24,6 @@ export default function MailForm({ ...props }) {
   } = form;
 
   const onSubmit = async (loginFormData) => {
-    if (!apiKey) {
-      console.error("SENDGRID_API_KEY not set");
-      return;
-    }
     const { name, email, phone, mensaje } = loginFormData;
 
     const requestData = {
@@ -35,6 +33,11 @@ export default function MailForm({ ...props }) {
       mensaje: mensaje,
       titulo: titulo,
     };
+
+    if (!apiKey) {
+      console.error("SENDGRID_API_KEY not set");
+      return;
+    }
 
     try {
       const { data } = await axios.post(
